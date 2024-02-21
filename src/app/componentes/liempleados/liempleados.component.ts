@@ -25,7 +25,8 @@ export class LiempleadosComponent implements OnInit {
   edit!: FormGroup;
   summited: boolean = false;
   data: any;
-  empleado: any;
+  empleadoId!: string;
+  empleNombre!: string;
 
   constructor(
     private build: FormBuilder, 
@@ -83,7 +84,7 @@ export class LiempleadosComponent implements OnInit {
 // Se carga el empleado para su edición
   abrirEdiciionEmpleado(id: string) {
     this.db.obtenerEmpleado(id).subscribe((data: any) => {
-      this.empleado = data.id;
+      this.empleadoId = data.id;
       this.edit.setValue({
         nombre: data.nombre,
         departamento: data.departamento,
@@ -109,9 +110,21 @@ export class LiempleadosComponent implements OnInit {
     }
   }
 
+// Carga el modal eliminar empleado
+
+  abrirEliminarEmpleado(id: string, nombre:string) {
+    this.empleadoId = id;
+    this.empleNombre = nombre;
+  }
+
 // Elimina el empleado seleccionado
   eliminarEmpleado(id: string) {
-
+    this.db.eliminarEmpleado(id).then(() => {
+      document.getElementById("closeEliminaModal")?.click();
+      this.notificacion.showSuccess('El registro se eliminó correctamente', 'INFORME');
+    }).catch(error => {
+      this.notificacion.showError('No se pudo eliminar el registro, prueba de nuevo', 'ERROR');
+    })
   }
 
 }

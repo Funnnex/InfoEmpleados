@@ -14,7 +14,7 @@ export class FirebaseService {
     return this.db.collection('empleados').valueChanges({ idField: 'id' });
   }
 
-  obtenerEmpleado(id: string) {
+  obtenerEmpleado(id: string): Observable<any> {
     return this.db.collection('empleados').doc(id).valueChanges({ idField: 'id' });
   }
 
@@ -22,11 +22,11 @@ export class FirebaseService {
       return this.db.collection('empleados').add(empleado);
   }
 
-  editarEmpleado(id:string , empleado: Empleados) {
+  editarEmpleado(id:string , empleado: Empleados): Promise<any> {
     return this.db.collection('empleados').doc(id).update(empleado);
   }
 
-  eliminarEmpleado(id: string) {
+  eliminarEmpleado(id: string): Promise<any> {
     return this.db.collection('empleados').doc(id).delete();
   }
 
