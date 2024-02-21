@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "infoempleados": {
+      "hosting": {
+        "infoempleados": [
+          "infoempleados"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "infoempleados"
+  }
+}
