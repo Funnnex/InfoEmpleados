@@ -110,8 +110,7 @@ export class LiempleadosComponent implements OnInit {
     }
   }
 
-// Carga el modal eliminar empleado
-
+// Carga datos para el modal eliminar empleado
   abrirEliminarEmpleado(id: string, nombre:string) {
     this.empleadoId = id;
     this.empleNombre = nombre;
